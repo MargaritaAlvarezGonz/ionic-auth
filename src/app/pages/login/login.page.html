@@ -1,22 +1,26 @@
 
 <ion-content [fullscreen]="true">
-  <div>
-    <ion-title>Hola</ion-title>
-    <p>Inicia sesión para entrar a tu cuenta</p>
+
+  <div class="header">
+    <p class="title">¡Hola!</p>
+    <p class="subTitle">Inicia sesión para entrar a tu cuenta</p>
   </div>
 
   <form>
     <div class="ion-padding">
       <ion-item>
-        <ion-input></ion-input>
+        <ion-input placeholder="nombre de usuario" class="input"></ion-input>
         <ion-icon name="person-outline"></ion-icon>
       </ion-item>
       <ion-item>
-        <ion-input></ion-input>
+        <ion-input placeholder="contraseña" class="input"></ion-input>
         <ion-icon name="lock-closed-outline"></ion-icon>
       </ion-item>
-      <div>
-        <a [routerLink]="['/reset-password']">¿Olvidaste tu contraseña?</a>
+      <div class="forgotpassword">
+        <a [routerLink]="['/reset-password']" style="color: #ffc33f;">¿Olvidaste tu contraseña?</a>
+      </div>
+      <div class="signupLink">
+        <p> Aún no te haz registrado?<a  style="color: #ffc33f;" [routerLink]="['/signup']"> Entra ahora</a></p>
       </div>
 
       <ion-fab vertical="bottom" horizontal="end" style="margin-bottom:30px">
