@@ -5,18 +5,34 @@
     <p class="subTitle">Regístrate para crear tu cuenta</p>
   </div>
 
-  <form>
+  <form [formGroup]="regForm" novalidate>
     <div class="ion-padding">
       <ion-item>
-        <ion-input placeholder="nombre" class="input"></ion-input>
+        <ion-input formControlName="fullname" placeholder="nombre" class="input"></ion-input>
         <ion-icon name="person-outline"></ion-icon>
       </ion-item>
+        <div *ngIf="this.regForm.controls['fullname'].invalid && (regForm.controls['fullname'].dirty || this.regForm.controls['fullname'].touched)">
+          <ion-text >
+            El nombre  es obligatorio
+          </ion-text>
+        </div>
+
       <ion-item>
-        <ion-input placeholder="email" class="input"></ion-input>
+        <ion-input formControlName="email" placeholder="email" class="input"></ion-input>
         <ion-icon name="lock-closed-outline"></ion-icon>
       </ion-item>
+        <div *ngIf="this.regForm.controls['email'].invalid && (regForm.controls['email'].dirty || this.regForm.controls['email'].touched)">
+        <ion-text  >
+          El email es obligatorio
+        </ion-text >
+        <ion-text  >
+          El email debe ser valido
+        </ion-text>
+       </div>
+
+
       <ion-item>
-        <ion-input placeholder="contraseña" class="input"></ion-input>
+        <ion-input formControlName="password" placeholder="contraseña" class="input"></ion-input>
         <ion-icon name="lock-closed-outline"></ion-icon>
       </ion-item>
 
