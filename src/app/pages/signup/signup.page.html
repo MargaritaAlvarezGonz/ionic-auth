@@ -12,7 +12,8 @@
         <ion-icon name="person-outline"></ion-icon>
       </ion-item>
         <div *ngIf="this.regForm.controls['fullname'].invalid && (regForm.controls['fullname'].dirty || this.regForm.controls['fullname'].touched)">
-          <ion-text >
+          <ion-text  *ngIf="errorControl.fullname.errors?.required"
+          >
             El nombre  es obligatorio
           </ion-text>
         </div>
@@ -22,10 +23,10 @@
         <ion-icon name="lock-closed-outline"></ion-icon>
       </ion-item>
         <div *ngIf="this.regForm.controls['email'].invalid && (regForm.controls['email'].dirty || this.regForm.controls['email'].touched)">
-        <ion-text  >
+        <ion-text *ngIf="errorControl.email.errors?.required" >
           El email es obligatorio
         </ion-text >
-        <ion-text  >
+        <ion-text  *ngIf="errorControl.email.errors?.pattern">
           El email debe ser valido
         </ion-text>
        </div>
@@ -35,6 +36,16 @@
         <ion-input formControlName="password" placeholder="contraseña" class="input"></ion-input>
         <ion-icon name="lock-closed-outline"></ion-icon>
       </ion-item>
+
+      <div *ngIf="this.regForm.controls['password'].invalid && (regForm.controls['password'].dirty || this.regForm.controls['password'].touched)">
+        <ion-text *ngIf="errorControl.password.errors?.required" >
+          La contraseña es requerida
+        </ion-text >
+        <ion-text *ngIf="errorControl.password.errors?.pattern">
+          El email debe tener letras, por lo menos una letra mayúscula, un número, signos y debe contener 8 dígitos
+        </ion-text>
+       </div>
+
 
       <div class="signupLink">
         <p > Listo para registrate?<a  style="color: #ffc33f;" [routerLink]="['/login']"> Entra ahora</a></p>

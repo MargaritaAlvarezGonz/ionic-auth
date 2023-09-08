@@ -12,7 +12,7 @@ export class SignupPage implements OnInit {
 
   regForm: FormGroup;
   constructor(public formBuilder: FormBuilder, public loadingCtrl: LoadingController,
-    public authService: AuthenticationService
+    public authService: AuthenticationService,
     ) { }
 
   ngOnInit() {
@@ -23,10 +23,10 @@ export class SignupPage implements OnInit {
         Validators.email,
         Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
       ]],
-      password: ['',
+      password: ['',[
       Validators.required,
-      Validators.pattern("^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).{6,12}$")
-      ]
+      Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[0-8])(?=.*[A-Z])")
+      ]]
     })
   }
   get errorControl(){
