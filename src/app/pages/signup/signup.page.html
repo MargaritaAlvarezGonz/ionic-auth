@@ -5,15 +5,14 @@
     <p class="subTitle">Regístrate para crear tu cuenta</p>
   </div>
 
-  <form [formGroup]="regForm" novalidate>
+  <form [formGroup]="regForm">
     <div class="ion-padding">
       <ion-item>
         <ion-input formControlName="fullname" placeholder="nombre" class="input"></ion-input>
         <ion-icon name="person-outline"></ion-icon>
       </ion-item>
         <div *ngIf="this.regForm.controls['fullname'].invalid && (regForm.controls['fullname'].dirty || this.regForm.controls['fullname'].touched)">
-          <ion-text  *ngIf="errorControl.fullname.errors?.required"
-          >
+          <ion-text  *ngIf="errorControl.fullname.errors?.required">
             El nombre  es obligatorio
           </ion-text>
         </div>
@@ -23,11 +22,11 @@
         <ion-icon name="lock-closed-outline"></ion-icon>
       </ion-item>
         <div *ngIf="this.regForm.controls['email'].invalid && (regForm.controls['email'].dirty || this.regForm.controls['email'].touched)">
-        <ion-text *ngIf="errorControl.email.errors?.required" >
-          El email es obligatorio
-        </ion-text >
-        <ion-text  *ngIf="errorControl.email.errors?.pattern">
-          El email debe ser valido
+          <ion-text *ngIf="errorControl.email.errors?.required" >
+            El email es obligatorio
+          </ion-text >
+          <ion-text  *ngIf="errorControl.email.errors?.pattern">
+            El email debe ser valido
         </ion-text>
        </div>
 
@@ -48,11 +47,11 @@
 
 
       <div class="signupLink">
-        <p > Listo para registrate?<a  style="color: #ffc33f;" [routerLink]="['/login']"> Entra ahora</a></p>
+        <p > ¿Todo  listo?<a  style="color: #ffc33f;" [routerLink]="['/login']"> Entra ahora para registrarte</a></p>
       </div>
 
       <ion-fab vertical="bottom" horizontal="end" style="margin-bottom:30px">
-        <ion-fab-button [routerLink]="['/home']">
+        <ion-fab-button (click)="signUp()">
           <ion-icon name="chevron-forward"></ion-icon>
         </ion-fab-button>
       </ion-fab>

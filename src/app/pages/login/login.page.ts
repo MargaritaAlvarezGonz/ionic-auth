@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular';
 import { AuthenticationService } from 'src/app/authentication.service';
 
@@ -13,7 +14,7 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
 
   constructor(public formBuilder: FormBuilder, public loadingCtrl: LoadingController,
-    public authService: AuthenticationService,) { }
+    public authService: AuthenticationService, public route : Router ) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -34,11 +35,21 @@ export class LoginPage implements OnInit {
     return this.loginForm?.controls;
   }
 
-  async signUp(){
+  async login(){
     const loading = await this.loadingCtrl.create();
     await loading.present();
     if(this.loginForm?.valid){
-      // const user = await this.authService.registerUser(email, password)
+      const user = await this.authService.loginUser(this.loginForm.value.email, this.loginForm.value.password).catch((error) => {
+        console.log(error);
+        loading.dismiss()
+      })
+
+      if(user){
+        loading.dismiss()
+        this.route.navigate(['/home'])
+      }else{
+        console.log('provide correct values');
+      }
     }
   }
 
