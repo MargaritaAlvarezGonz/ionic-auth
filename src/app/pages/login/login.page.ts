@@ -14,19 +14,19 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
 
   constructor(public formBuilder: FormBuilder, public loadingCtrl: LoadingController,
-    public authService: AuthenticationService, public route : Router ) { }
+    public authService: AuthenticationService, public router : Router ) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
 
       email: ['', [
         Validators.required,
-        Validators.email,
-        Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")
+        Validators.email
+
       ]],
       password: ['',[
-      Validators.required,
-      Validators.pattern("(?=.*\d)(?=.*[a-z])(?=.*[0-8])(?=.*[A-Z])")
+      Validators.required
+
       ]]
     })
   }
@@ -46,7 +46,7 @@ export class LoginPage implements OnInit {
 
       if(user){
         loading.dismiss()
-        this.route.navigate(['/home'])
+        this.router.navigate(['/home'])
       }else{
         console.log('provide correct values');
       }
